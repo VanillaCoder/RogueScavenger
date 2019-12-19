@@ -2,8 +2,8 @@ export default class Player {
 
     constructor(gameWidth, gameHeight) {
 
-        this.width = 150;
-        this.height = 20;
+        this.width = 50;
+        this.height = 50;
         this.maxSpeed = 3;
         this.speed = 0;
         this.jumpVel = 0;
@@ -28,6 +28,7 @@ export default class Player {
         ctx.fillStyle = "#f00"
         ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
+    
     jump() {
         if(this.jumpAvailable === true) {
             this.jumpAvailable = false;
