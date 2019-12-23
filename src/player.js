@@ -1,16 +1,18 @@
 export default class Player {
 
-    constructor(gameWidth, gameHeight) {
+    constructor(game) {
+        this.gameWidth = game.gameWidth
+        this.gameHeight = game.gameHeight
 
-        this.width = 50;
-        this.height = 50;
+        this.width = 25;
+        this.height = 25;
         this.maxSpeed = 3;
         this.speed = 0;
         this.jumpVel = 0;
         this.jumpAvailable = 2;
         this.position = {
-            x: gameWidth / 2 - this.width / 2,
-            y: gameHeight - this.height - 10,
+            x: game.gameWidth / 2 - this.width / 2,
+            y: game.gameHeight - this.height - 10,
 
         }
 
@@ -50,13 +52,12 @@ export default class Player {
             this.jumpVel -= .18;
         }
         if (this.position.x < 0) this.position.x = 0;
-        if (this.position.x > 800 - this.width) this.position.x = 800 - this.width;
+        if (this.position.x > 1000 - this.width) this.position.x = 1000 - this.width;
         if (this.position.y < 0) this.position.y = 0;
         if (this.position.y > 600 - this.height) {
             this.position.y = 600 - this.height;
             this.jumpVel = 0;
             this.jumpAvailable = 2;
-            console.log("Bottom")
         };
 
 
