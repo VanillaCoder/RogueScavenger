@@ -16,15 +16,15 @@ export default class InputHandler {
             68: false
         };
 
-        window.addEventListener('keydown',  (e) => {
-            if (e.keyCode === 87 || 38) {
+        window.addEventListener('keydown', (e) => {
+            if (e.keyCode === 87 || e.keyCode === 38) {
                 this.keyDownEvent = true;
             }
             this.keyState[e.keyCode || e.which] = true;
         }, true);
 
-        window.addEventListener('keyup',  (e) => {
-            if (e.keyCode === 87 || 38) {
+        window.addEventListener('keyup', (e) => {
+            if (e.keyCode === 87 || e.keyCode === 38) {
                 this.keyUpEvent = false;
             }
             this.keyState[e.keyCode || e.which] = false;

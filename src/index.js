@@ -71,4 +71,4 @@ function gameLoop(timestamp) {
     requestAnimationFrame(gameLoop);
 }
 
-gameLoop();
+requestAnimationFrame(gameLoop);
