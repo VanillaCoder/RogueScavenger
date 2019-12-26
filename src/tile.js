@@ -17,11 +17,47 @@ export default class Tile {
 
     }
     update() {
-        if(detectCollision(this.game.player, this) === 'topLeftBottom' && this.game.player.oldY > (this.position.y + this.height)) {
+        // console.log(this.corners.topLeft[1])
+        // collision handling
+        if(detectCollision(this.game.player, this) === 'topLeft-Bottom') {
             this.game.player.position.y = this.position.y + this.height;
-            this.game.player.corners.topLeft[1] = this.game.player.position.y;
+            this.game.player.updateCorners();
             this.game.player.jumpVel = -1;
         }
+        if(detectCollision(this.game.player, this) === 'topRight-Bottom') {
+            this.game.player.position.y = this.position.y + this.height;
+            this.game.player.updateCorners();
+            this.game.player.jumpVel = -1;
+        }
+        if(detectCollision(this.game.player, this) === 'botRight-Top') {
+            this.game.player.jumpVel = -.1;
+            this.game.player.position.y = this.position.y - this.game.player.height - .01;
+            this.game.player.updateCorners();
+            this.game.player.jumpAvailable = 2;
+        }
+        if(detectCollision(this.game.player, this) === 'botLeft-Top') {
+            this.game.player.jumpVel = -.1;
+            this.game.player.position.y = this.position.y - this.game.player.height - .01;
+            this.game.player.updateCorners();
+            this.game.player.jumpAvailable = 2;
+        }
+        if(detectCollision(this.game.player, this) === 'botRight-Left') {
+            this.game.player.position.x = this.position.x - this.game.player.width -.1;
+            this.game.player.updateCorners();
+        }
+        if(detectCollision(this.game.player, this) === 'topRight-Left') {
+            this.game.player.position.x = this.position.x - this.game.player.width -.1;
+            this.game.player.updateCorners();
+        }
+        if(detectCollision(this.game.player, this) === 'topLeft-Right') {
+            this.game.player.position.x = this.position.x + this.width;
+            this.game.player.updateCorners();
+        }
+        if(detectCollision(this.game.player, this) === 'botLeft-Right') {
+            this.game.player.position.x = this.position.x + this.width;
+            this.game.player.updateCorners();
+        }
+
     }
 
 
