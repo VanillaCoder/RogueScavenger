@@ -1,11 +1,21 @@
-export function detectCollision(player, gameObject) {
-    let bottomOfPlayer = player.positon.y + player.height;
-    let topOfPlayer = player.position.y;
-    let leftOfPlayer = player.position.x;
-    let rightOfPlayer = player.position.x + player.width;
 
-    let bottomOfObject = gameObject.positon.y + gameObject.height;
-    let topOfObject = gameObject.position.y;
-    let leftOfObject = gameObject.position.x;
-    let rightOfObject = gameObject.position.x + gameObject.width;
+export function detectCollision(player, gameObject) {
+    let topLeft = player.corners.topLeft
+
+
+
+    let spotCheck = {
+        check: null
+    }
+
+    //checking collisions, returning correct side
+    // console.log(topLeft[0])
+
+    if (topLeft[0] > gameObject.corners.botLeft[0] && topLeft[0] < gameObject.corners.botRight[0] &&
+        topLeft[1] < gameObject.corners.botLeft[1]
+    ) {
+        console.log(gameObject.corners.botLeft[1] + " " + topLeft)
+        return 'topLeftBottom'
+    }
+
 }

@@ -1,6 +1,7 @@
 import Player from './player.js';
 import InputHandler from './inputHandler.js';
 import Tile from './tile.js';
+import { buildLevel, level1 } from './levels.js';
 
 export default class Game {
     constructor(gameWidth, gameHeight) {
@@ -12,21 +13,25 @@ export default class Game {
     start() {
         this.player = new Player(this);
         this.inputHandler = new InputHandler(this.player)
-        this.tile = new Tile(this, { x: 200, y: 550 });
-        // this.gameObjects = [tile]
+        //idk why this line is necessary
+        // this.tile = new Tile(this, { x: 300, y: 300 })
 
-        // this.gameObjects = [
-        //     this.player,
-        //     this.tile
-        // ]
+        let tiles = buildLevel(this, level1);
+
+        this.gameObjects = [
+            this.player,
+            ...tiles
+        ]
     }
     update(deltaTime) {
-
-        this.player.update(deltaTime);
+        this.gameObjects.forEach((object) => {
+            object.update(deltaTime)
+        })
         this.inputHandler.keyHandler();
     }
     draw(ctx) {
-        this.tile.draw(ctx)
-        this.player.draw(ctx)
+        this.gameObjects.forEach((object) => {
+            object.draw(ctx)
+        })
     }
 }
