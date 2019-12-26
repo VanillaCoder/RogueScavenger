@@ -84,7 +84,10 @@ export default class Player {
         //if player hits edges of screen
         if (this.position.x < 0) this.position.x = 0;
         if (this.position.x > 1000 - this.width) this.position.x = 1000 - this.width;
-        if (this.position.y < 0) this.position.y = 0;
+        if (this.position.y < 0) {
+            this.position.y = 0;
+            this.jumpVel = -1;
+        }
         //handles double jump case for bottom screen
         if (this.position.y > 600 - this.height) {
             this.position.y = 600 - this.height;
