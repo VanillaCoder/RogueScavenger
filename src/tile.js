@@ -17,8 +17,9 @@ export default class Tile {
 
     }
     update() {
-        // console.log(this.corners.topLeft[1])
         // collision handling
+        // to understand conditional it is 'playerCorner-sideOfTile'
+
         if(detectCollision(this.game.player, this) === 'topLeft-Bottom') {
             this.game.player.position.y = this.position.y + this.height;
             this.game.player.updateCorners();
@@ -42,11 +43,11 @@ export default class Tile {
             this.game.player.jumpAvailable = 2;
         }
         if(detectCollision(this.game.player, this) === 'botRight-Left') {
-            this.game.player.position.x = this.position.x - this.game.player.width -.1;
+            this.game.player.position.x = this.position.x - this.game.player.width -.01;
             this.game.player.updateCorners();
         }
         if(detectCollision(this.game.player, this) === 'topRight-Left') {
-            this.game.player.position.x = this.position.x - this.game.player.width -.1;
+            this.game.player.position.x = this.position.x - this.game.player.width -.01;
             this.game.player.updateCorners();
         }
         if(detectCollision(this.game.player, this) === 'topLeft-Right') {
