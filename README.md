@@ -1,7 +1,7 @@
 # GameDev01
 
 <p>This is a passion project and a work in progress.</p> 
-<p>I woke up one day and decided I wanted to make a game. I also wanted to code every line myself which means ignoring existing libraries like Phaser which would handle a lot of the tedious hard work for me.</p>
+<p>I woke up one day and decided I wanted to make a game. I also wanted to code every line myself which means ignoring existing libraries like Phaser which would handle a lot of the tedious hard work for me. Some of the code is rough, some of it isn't as rough. This is the place I come when I want to code for me.</p>
 
 ### [game link](https://vanillacoder.github.io/GameDev01/)
 
