@@ -13,9 +13,6 @@ export default class Game {
     start() {
         this.player = new Player(this);
         this.inputHandler = new InputHandler(this.player)
-        //idk why this line is necessary
-        // this.tile = new Tile(this, { x: 300, y: 300 })
-
         let tiles = buildLevel(this, level1);
 
         this.gameObjects = [
