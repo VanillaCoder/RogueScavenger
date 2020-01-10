@@ -44,12 +44,12 @@ export default class Player {
     jump() {
         if (this.jumpAvailable === 2) {
             this.jumpAvailable -= 1;
-            this.jumpVel += 7;
+            this.jumpVel += 6.5;
         }
         else if (this.jumpAvailable === 1) {
             this.jumpAvailable -= 1;
             this.jumpVel /= 3;
-            this.jumpVel += 5;
+            this.jumpVel += 4.5;
         }
     }
 
