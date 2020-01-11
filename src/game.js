@@ -2,6 +2,7 @@ import Player from './player.js';
 import InputHandler from './inputHandler.js';
 import Tile from './tile.js';
 import { buildLevel, level1 } from './levels.js';
+import Animation from './animation.js'
 
 export default class Game {
     constructor(gameWidth, gameHeight) {
@@ -12,12 +13,14 @@ export default class Game {
 
     start() {
         this.player = new Player(this);
-        this.inputHandler = new InputHandler(this.player)
+        this.animation = new Animation(this.player)
+        this.inputHandler = new InputHandler(this.player, this.animation)
         let tiles = buildLevel(this, level1);
 
         this.gameObjects = [
             this.player,
-            ...tiles
+            ...tiles,
+            this.animation
         ]
     }
     update(deltaTime) {

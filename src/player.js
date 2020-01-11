@@ -1,14 +1,16 @@
-import { detectCollision } from './collisionDetection.js'
+import Animator from './animation.js'
 
 export default class Player {
 
     constructor(game) {
+        this.image = document.getElementById("adventurer");
         this.game = game;
+        this.direction = 0;
         this.tile = this.game.tile
         this.gameWidth = game.gameWidth
         this.gameHeight = game.gameHeight
-        this.width = 25;
-        this.height = 25;
+        this.width = 30;
+        this.height = 45;
         this.maxSpeed = 3;
         this.speed = 0;
         this.jumpVel = -.1;
@@ -28,6 +30,11 @@ export default class Player {
 
     }
 
+
+ 
+
+    
+
     moveLeft() {
         this.speed = -this.maxSpeed;
     }
@@ -37,8 +44,10 @@ export default class Player {
     }
 
     draw(ctx) {
-        ctx.fillStyle = "#f00"
+        // ctx.fillStyle = "#f00"
         ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
+    
+    
     }
 
     jump() {

@@ -1,9 +1,9 @@
-
+import animator from './animation.js'
 
 export default class InputHandler {
-    constructor(player) {
+    constructor(player, animator) {
         this.player = player;
-
+        this.animator = animator;
         this.keyDownEvent = false;
         this.keyUpEvent = false;
 
@@ -19,6 +19,8 @@ export default class InputHandler {
         window.addEventListener('keydown', (e) => {
             if (e.keyCode === 87 || e.keyCode === 38) {
                 this.keyDownEvent = true;
+                this.animator.count = 0;
+
             }
             this.keyState[e.keyCode || e.which] = true;
         }, true);
@@ -26,6 +28,7 @@ export default class InputHandler {
         window.addEventListener('keyup', (e) => {
             if (e.keyCode === 87 || e.keyCode === 38) {
                 this.keyUpEvent = false;
+                this.animator.count = 0;
             }
             this.keyState[e.keyCode || e.which] = false;
         }, true);
@@ -36,6 +39,8 @@ export default class InputHandler {
     keyHandler() {
         if ((this.keyState[38] || this.keyState[87]) && (this.keyDownEvent && !this.keyUpEvent)) {
             this.keyUpEvent = true;
+            console.log(this.keyUpEvent)
+
             this.player.jump();
         }
         if (this.keyState[37] || this.keyState[65]) {
@@ -43,9 +48,12 @@ export default class InputHandler {
         }
         else if (this.keyState[39] || this.keyState[68]) {
             this.player.moveRight();
+            this.animator.direction = 1;
+
         }
         else {
             this.player.speed = 0;
+            this.animator.direction = 0;
         }
     }
 }
