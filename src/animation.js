@@ -25,7 +25,6 @@ export default class Animator {
             this.count = 0;
             this.frame_index = (this.frame_index == this.frame_set[this.direction].length - 1) ? 0 : this.frame_index + 1;
             this.frame = this.frame_set[this.direction][this.frame_index]
-            // console.log(this.frame, this.frame_index)            
 
         }
     }
@@ -46,7 +45,6 @@ export default class Animator {
                 currentFrame -= 8;
             }
         }
-        console.log(this.frame_index)
         if (this.direction === 2) {
             ctx.drawImage(
                 this.image,

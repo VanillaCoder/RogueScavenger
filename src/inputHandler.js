@@ -22,11 +22,9 @@ export default class InputHandler {
             if (e.keyCode === 87 || e.keyCode === 38) {
                 this.keyDownEvent = true;
             }
-            console.log(e.keyCode)
             if (e.keyCode === 39 || e.keyCode === 68 || e.keyCode === 37 || e.keyCode === 65) {
                 this.animationChange = true;
             }
-            console.log(this.animationChange)
             this.keyState[e.keyCode || e.which] = true;
         }, true);
 
