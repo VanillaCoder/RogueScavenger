@@ -13,6 +13,7 @@ export default class Game {
     }
 
     start() {
+        //dont want to hear this shit while im testing
         this.audio.loop = true;
         this.audio.play();
         this.player = new Player(this);
