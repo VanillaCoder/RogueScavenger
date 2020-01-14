@@ -6,12 +6,15 @@ import Animation from './animation.js'
 
 export default class Game {
     constructor(gameWidth, gameHeight) {
+        this.audio = document.getElementById("test-audio")
         this.gameHeight = gameHeight;
         this.gameWidth = gameWidth;
 
     }
 
     start() {
+        this.audio.loop = true;
+        this.audio.play();
         this.player = new Player(this);
         this.animation = new Animation(this.player)
         this.inputHandler = new InputHandler(this.player, this.animation)
