@@ -1,11 +1,14 @@
-# GameDev01
+# Rogue Scavenger
 
 <p>This is a passion project and a work in progress.</p> 
-<p>I woke up one day and decided I wanted to make a game. I also wanted to code every line myself which means ignoring existing libraries like Phaser which would handle a lot of the tedious hard work for me. Some of the code is rough, some of it isn't as rough. This is the place I come when I want to code for me.</p>
+<p> As a rogue scavenger you find yourself in many unknown places looking for scraps of forgotten treasure. Today you find yourself in a temple lost to time. It was a difficult journey to get this far and it looks like gathering all the tresure here is going to be just as difficult...</p>
 
-### [game link](https://vanillacoder.github.io/GameDev01/)
+### [Game link](https://vanillacoder.github.io/GameDev01/)
 
 # Technologies used
 + JavaScript
 + HTML5
 + CSS
+
+# The Initial Idea
+<p>As a way to motivate myself to code one day I decided to make the first interesting thing that came to mind. On that day it was a game in JavaScript. I decided I was going to be a 2D platformer built from the ground up without using any libraries (such as Phaser) with nothing but JavaScript/HTML written all by yours truly (with help from the internet of course). This was a way to flex my logic muscles in a way tradition web-development hadn't done for me. To date it has been one of my most creatively inspiring p[rojects and as of writing this is still in development (1/16/2020).
