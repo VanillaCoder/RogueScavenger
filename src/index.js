@@ -2,7 +2,7 @@ import Game from './game.js'
 
 
 let canvas = document.getElementById("gameScreen");
-
+let gameStart = 0;
 let ctx = canvas.getContext("2d");
 ctx.imageSmoothingEnabled = false;
 
@@ -13,7 +13,6 @@ const GAME_HEIGHT = 600;
 let lastTime = 0;
 
 let game = new Game(GAME_WIDTH, GAME_HEIGHT)
-game.start();
 
 
 
@@ -29,4 +28,5 @@ function gameLoop(timestamp) {
     requestAnimationFrame(gameLoop);
 }
 
-requestAnimationFrame(gameLoop);
+    // game.start();
+    requestAnimationFrame(gameLoop);

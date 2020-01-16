@@ -1,13 +1,16 @@
 import animator from './animation.js'
 
 export default class InputHandler {
-    constructor(player, animator) {
+    constructor(player, animator, game) {
         this.player = player;
+        this.game = game;
         this.animator = animator;
         this.keyDownEvent = false;
         this.keyUpEvent = false;
         this.animationChange = false;
         this.animationChangeChk = false;
+        this.pause = false;
+        this.pauseChk = false;
 
         this.keyState = {
             37: false,
@@ -17,10 +20,13 @@ export default class InputHandler {
             65: false,
             68: false
         };
-
+//13 === enter btw
         window.addEventListener('keydown', (e) => {
             if (e.keyCode === 87 || e.keyCode === 38) {
                 this.keyDownEvent = true;
+            }
+            if (e.keyCode === 80) {
+                this.pause = true;
             }
             if (e.keyCode === 39 || e.keyCode === 68 || e.keyCode === 37 || e.keyCode === 65) {
                 this.animationChange = true;
@@ -31,6 +37,9 @@ export default class InputHandler {
         window.addEventListener('keyup', (e) => {
             if (e.keyCode === 87 || e.keyCode === 38) {
                 this.keyUpEvent = false;
+            }
+            if (e.keyCode === 80) {
+                this.pauseChk = false;
             }
             if (e.keyCode === 39 || e.keyCode === 68 || e.keyCode === 37 || e.keyCode === 65) {
                 this.animationChangeChk = false;
@@ -43,9 +52,13 @@ export default class InputHandler {
     }
 
     keyHandler() {
-        if ((this.keyState[38] || this.keyState[87]) && (this.keyDownEvent && !this.keyUpEvent)) {
+        if (this.keyState[80] && (this.pause && !this.pauseChk)) {
+            this.pauseChk = true;
+            this.game.pauseGame();
+        }
+        if ((this.keyState[38] || this.keyState[87]) && (this.keyDownEvent && !this.keyUpEvent) && this.game.gameState == 0) {
             this.keyUpEvent = true;
-
+            console.log("jump")
             this.player.jump();
         }
         if (this.keyState[37] || this.keyState[65]) {
@@ -62,6 +75,7 @@ export default class InputHandler {
                 this.animator.changeDirection(1);
             }
         }
+
         else {
             this.player.speed = 0;
         }
