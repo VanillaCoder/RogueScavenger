@@ -7,8 +7,20 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Game01</title>
     <style>
+        body {
+            background-color: #4D4D4D;
+        }
         #gameScreen {
             border: 1px solid black;
+
+        }
+
+        #centerDiv {
+            margin: auto;
+            width: 1000px;
+            padding: 10px;
+
+
         }
 
         img {
@@ -23,7 +35,9 @@
     <img id="pixel-tile" src="assets/tile.PNG">
     <img id="tile-set" src="assets/tileset.png">
     <img id="adventurer" src="assets/adventurer.png">
-    <canvas id="gameScreen" width="1000" height="600"></canvas>
+    <div id="centerDiv">
+        <canvas id="gameScreen" width="1000" height="600"></canvas>
+    </div>
 
 
     <script type="module" src="./src/index.js"></script>

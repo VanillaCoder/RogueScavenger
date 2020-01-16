@@ -52,6 +52,9 @@ export default class InputHandler {
     }
 
     keyHandler() {
+        if (this.keyState[13]) {
+            this.game.menuStart();
+        }
         if (this.keyState[80] && (this.pause && !this.pauseChk)) {
             this.pauseChk = true;
             this.game.pauseGame();

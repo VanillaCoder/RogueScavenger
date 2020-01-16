@@ -27,7 +27,11 @@ export default class Game {
             ...this.tiles,
             this.animation
         ]
-        this.gameState = 0;
+        this.gameState = 2;
+        this.menuHue = 255;
+        this.colorChange = 1;
+        this.menuColor = 'rgb(' + this.menuHue + ',0,0)';
+
 
     }
 
@@ -42,17 +46,38 @@ export default class Game {
     }
     pauseGame() {
         if (this.gameState == GAMESTATE.PAUSED) {
+            this.audio.play();
             this.gameState = GAMESTATE.RUNNING;
         }
-        else {
+        else if (this.gameState == GAMESTATE.RUNNING) {
+            this.audio.pause();
             this.gameState = GAMESTATE.PAUSED;
 
         }
     }
 
+    menuStart() {
+        this.gameState = GAMESTATE.RUNNING;
+        this.audio.loop = true;
+        this.audio.play();
+    }
+
+    centerText(ctx, text, y) {
+        var measurement = ctx.measureText(text);
+        var x = (ctx.canvas.width - measurement.width) / 2;
+        ctx.fillText(text, x, y);
+    }
+
     update(deltaTime) {
         this.inputHandler.keyHandler();
         if (this.gameState == GAMESTATE.PAUSED) return;
+        if (this.gameState == GAMESTATE.MENU) {
+            this.menuHue += 2 * this.colorChange;
+            this.menuColor = 'rgb(' + this.menuHue + ',0,0)';
+            if (this.menuHue > 255) this.colorChange = -1;
+            if (this.menuHue < 0) this.colorChange = 1; 
+            return;
+        }
         if (this.gameState == GAMESTATE.RUNNING) {
             this.gameObjects.forEach((object) => {
                 object.update(deltaTime)
@@ -62,8 +87,29 @@ export default class Game {
 
     }
     draw(ctx) {
-        this.gameObjects.forEach((object) => {
-            object.draw(ctx)
-        })
+        if (this.gameState == GAMESTATE.MENU) {
+            ctx.font = "48px monospace";
+            ctx.fillStyle = "black"
+            this.centerText(ctx, 'Rogue Scavenger', 200);
+            ctx.font = "24px monospace";
+            this.centerText(ctx, 'Control the scavenger with the WASD or arrow keys', 300);
+            console.log(this.menuColor)
+            ctx.fillStyle = this.menuColor;
+            this.centerText(ctx, 'Press \"enter\" to start the game', 350);
+            return;
+        }
+        if (this.gameState == GAMESTATE.PAUSED) {
+            ctx.font = "48px monospace";
+            ctx.fillStyle = "black"
+            this.centerText(ctx, 'Game Paused', 250);
+            ctx.font = "32px monospace";
+            this.centerText(ctx, 'Press \"p\" to resume', 350);
+        }
+        else {
+            this.gameObjects.forEach((object) => {
+                object.draw(ctx)
+            })
+        }
+
     }
 }
