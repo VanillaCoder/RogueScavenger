@@ -7,4 +7,5 @@
 
 # Technologies used
 + JavaScript
-+ HTML
++ HTML5
++ CSS
