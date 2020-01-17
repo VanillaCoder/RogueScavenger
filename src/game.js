@@ -19,7 +19,7 @@ export default class Game {
         this.gameWidth = gameWidth;
         this.currentLevel = level1
         this.player = new Player(this);
-        this.animation = new Animation(this.player)
+        this.animation = new Animation(this.player, this.Tile)
         this.inputHandler = new InputHandler(this.player, this.animation, this)
         this.tiles = buildLevel(this, this.currentLevel);
         this.gameObjects = [
@@ -38,8 +38,8 @@ export default class Game {
 
     start(gameState) {
         //dont want to hear this shit while im testing
-        // this.audio.loop = true;
-        // this.audio.play();
+        this.audio.loop = true;
+        this.audio.play();
 
 
 
@@ -83,8 +83,6 @@ export default class Game {
                 object.update(deltaTime)
             })
         }
-
-
     }
     draw(ctx) {
         if (this.gameState == GAMESTATE.MENU) {
@@ -93,7 +91,6 @@ export default class Game {
             this.centerText(ctx, 'Rogue Scavenger', 200);
             ctx.font = "24px monospace";
             this.centerText(ctx, 'Control the scavenger with the WASD or arrow keys', 300);
-            console.log(this.menuColor)
             ctx.fillStyle = this.menuColor;
             this.centerText(ctx, 'Press \"enter\" to start the game', 350);
             return;

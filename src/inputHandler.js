@@ -61,7 +61,6 @@ export default class InputHandler {
         }
         if ((this.keyState[38] || this.keyState[87]) && (this.keyDownEvent && !this.keyUpEvent) && this.game.gameState == 0) {
             this.keyUpEvent = true;
-            console.log("jump")
             this.player.jump();
         }
         if (this.keyState[37] || this.keyState[65]) {

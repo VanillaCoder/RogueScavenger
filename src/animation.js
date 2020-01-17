@@ -1,6 +1,6 @@
 
 export default class Animator {
-    constructor(player) {
+    constructor(player, tile) {
         this.player = player;
         this.direction = 0;
         this.image = player.image
@@ -15,6 +15,7 @@ export default class Animator {
                 [9, 10, 11, 12, 13, 14],
                 [32, 33, 34, 35, 36, 37]
             ]
+       
 
 
     }
@@ -32,6 +33,10 @@ export default class Animator {
     changeDirection(direction) {
         this.frame_index = 0;
         this.direction = direction;
+    }
+
+    coinDraw() {
+
     }
 
     draw(ctx) {
