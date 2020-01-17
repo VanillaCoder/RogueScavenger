@@ -3,7 +3,7 @@
 <p>This is a passion project and a work in progress.</p> 
 <p> As a rogue scavenger you find yourself in many unknown places looking for scraps of forgotten treasure. Today you find yourself in a temple lost to time. It was a difficult journey to get this far and it looks like gathering all the tresure here is going to be just as difficult...</p>
 
-### [Game link](https://vanillacoder.github.io/GameDev01/)
+### [Game link](https://vanillacoder.github.io/RogueScavenger/)
 ### Controls
 + movement: 'WASD' or arrow keys
 + pause game: 'P'
