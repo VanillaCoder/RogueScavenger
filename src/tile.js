@@ -5,6 +5,7 @@ export default class Tile {
     constructor(game, position, tile) {
         this.image = document.getElementById("tile-set");
         this.coinImage = document.getElementById("coins");
+        this.coinAudio = document.getElementById("coin-sound");
         this.tileID = tile;
         this.coinID = -1;
         this.game = game;
@@ -38,19 +39,36 @@ export default class Tile {
         }
     }
 
+    updateCorners() {
+        this.corners.topLeft[0] = this.position.x + 2.5;
+        this.corners.topRight[0] = this.position.x + this.width - 2.5;
+        this.corners.botRight[0] = this.position.x + this.width - 2.5;
+        this.corners.botLeft[0] = this.position.x + 2.5;
+        this.corners.topLeft[1] = this.position.y + 2.5;
+        this.corners.topRight[1] = this.position.y - 2.5;
+        this.corners.botRight[1] = this.position.y + this.height - 2.5;
+        this.corners.botLeft[1] = this.position.y + this.height + 2.5;
+
+    }
+
     colliosionInterpreter() {
         // collision handling
         // to understand conditional it is 'playerCorner-sideOfTile'
+        if(this.tileID === 81) {
+            console.log("UGH")
+        }
         if (this.count > 0) {
             if (detectCollision(this.game.player, this) === 'topLeft-Bottom') {
                 this.game.player.position.y = this.position.y + this.height;
-                this.game.player.updateCorners();
                 this.game.player.jumpVel = -1;
+                this.game.player.updateCorners();
+
             }
             if (detectCollision(this.game.player, this) === 'topRight-Bottom') {
                 this.game.player.position.y = this.position.y + this.height;
-                this.game.player.updateCorners();
                 this.game.player.jumpVel = -1;
+                this.game.player.updateCorners();
+
             }
             if (detectCollision(this.game.player, this) === 'botRight-Top') {
                 this.game.player.jumpVel = -.1;
@@ -82,53 +100,72 @@ export default class Tile {
             }
         }
         if (this.coinID > 0) {
+            this.height = 40;
+            this.width = 40;
+            this.updateCorners();
             if (detectCollision(this.game.player, this) === 'topLeft-Bottom') {
-                // this.game.player.updateCorners();
+                this.coinAudio.play();
                 this.coinID = -1;
                 this.tileID = 0;
-                console.log("Point")
+                this.game.score += 1;
+                this.game.levelCheck();
+                console.log(this.game.score)
             }
             if (detectCollision(this.game.player, this) === 'topRight-Bottom') {
-                // this.game.player.updateCorners();
+                this.coinAudio.play();
                 this.coinID = -1;
                 this.tileID = 0;
-                console.log("Point")
+                this.game.score += 1;
+                this.game.levelCheck();
+                console.log(this.game.score)
             }
             if (detectCollision(this.game.player, this) === 'botRight-Top') {
-                // this.game.player.updateCorners();
+                this.coinAudio.play();
                 this.coinID = -1;
                 this.tileID = 0;
-                console.log("Point")
+                this.game.score += 1;
+                this.game.levelCheck();
+                console.log(this.game.score)
             }
             if (detectCollision(this.game.player, this) === 'botLeft-Top') {
-                // this.game.player.updateCorners();
+                this.coinAudio.play();
                 this.coinID = -1;
                 this.tileID = 0;
-                console.log("Point")
+                this.game.score += 1;
+                this.game.levelCheck();
+                console.log(this.game.score)
             }
             if (detectCollision(this.game.player, this) === 'botRight-Left') {
-                // this.game.player.updateCorners();
+                this.coinAudio.play();
                 this.coinID = -1;
                 this.tileID = 0;
-                console.log("Point")
+                this.game.score += 1;
+                this.game.levelCheck();
+                console.log(this.game.score)
             }
             if (detectCollision(this.game.player, this) === 'topRight-Left') {
-                // this.game.player.updateCorners();
+                this.coinAudio.play();
                 this.coinID = -1;
                 this.tileID = 0;
-                console.log("Point")
+                this.game.score += 1;
+                this.game.levelCheck();
+                console.log(this.game.score)
             }
             if (detectCollision(this.game.player, this) === 'topLeft-Right') {
-                // this.game.player.updateCorners();
+                this.coinAudio.play();
                 this.coinID = -1;
                 this.tileID = 0;
-                console.log("Point")
+                this.game.score += 1;
+                this.game.levelCheck();
+                console.log(this.game.score)
             }
             if (detectCollision(this.game.player, this) === 'botLeft-Right') {
-                // this.game.player.updateCorners();
+                this.coinAudio.play();
                 this.coinID = -1;
                 this.tileID = 0;
-                console.log("Point")
+                this.game.score += 1;
+                this.game.levelCheck();
+                console.log(this.game.score)
             }
 
         }
@@ -138,8 +175,8 @@ export default class Tile {
     update() {
         this.colliosionInterpreter();
         this.coinUpdate();
-
     }
+
     coinUpdate() {
         this.coinCount++;
         if (this.coinCount >= this.delay) {
@@ -150,6 +187,7 @@ export default class Tile {
         }
     }
     drawCoin(ctx) {
+
 
         var currentFrame = this.coinFrame_set[this.coin][this.coinFrame_index];
 

@@ -16,7 +16,7 @@ export default class Player {
         this.jumpVel = -.1;
         this.jumpAvailable = 2;
         this.position = {
-            x: game.gameWidth / 2 - this.width / 2 - 75,
+            x: 25,
             y: 510 - this.height,
         }
         this.oldX = this.position.x;
@@ -55,11 +55,15 @@ export default class Player {
             this.jumpAvailable -= 1;
             // this.jumpVel /= 2;
             this.jumpVel += 6.5;
+            this.updateCorners();
+
         }
         else if (this.jumpAvailable === 1) {
             this.jumpAvailable -= 1;
             this.jumpVel /= 4;
             this.jumpVel += 4.5;
+            this.updateCorners();
+
         }
     }
 
@@ -88,8 +92,9 @@ export default class Player {
             //save old position, then change position, set jumpVel
             this.oldY = this.position.y;
             this.position.y -= this.jumpVel;
-            this.updateCorners();
             this.jumpVel -= .18;
+            this.updateCorners();
+
         }
         //if player hits edges of screen
         if (this.position.x < 0) this.position.x = 0;
@@ -100,9 +105,11 @@ export default class Player {
         }
         //handles double jump case for bottom screen
         if (this.position.y > 600 - this.height) {
-            this.position.y = 600 - this.height;
-            this.updateCorners();
-            this.jumpVel = 0;
+            // this.position.y = 600 - this.height;
+            // this.updateCorners();
+            this.game.score = -1;
+            this.game.levelCheck();
+            this.jumpVel = -1;
             this.jumpAvailable = 2;
         };
 

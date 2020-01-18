@@ -6,7 +6,9 @@ export function detectCollision(player, gameObject) {
     let botRight = player.corners.botRight;
     let botLeft = player.corners.botLeft;
 
-
+    if(gameObject.coinID > 0) {
+        // console.log(gameObject.height)
+    }
     //using oldX instead of current X solved an issue when sliding up a wall.
     if (player.oldX > gameObject.corners.botLeft[0] && player.oldX < gameObject.corners.botRight[0] &&
         topLeft[1] < gameObject.corners.botLeft[1] && player.oldY > (gameObject.position.y + gameObject.height)
