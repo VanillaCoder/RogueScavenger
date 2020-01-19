@@ -45,7 +45,7 @@ export default class Player {
 
     draw(ctx) {
         // ctx.fillStyle = "#f00"
-        ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
+        // ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
     
     
     }
